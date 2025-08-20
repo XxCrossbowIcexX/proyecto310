@@ -4,15 +4,15 @@ document.addEventListener("DOMContentLoaded" ,()=>{
 
     boton.addEventListener("click", (event)=>{
         event.preventDefault(); 
-        let user = document.getElementById("user").value.trim();
+        let email = document.getElementById("email").value.trim();
         let pass = document.getElementById("password").value.trim();
 
-        if (user.length>0 && pass.length>0){
-            sessionStorage.setItem("user",user);
+        if (email.length>0 && pass.length>0){
+            sessionStorage.setItem("sesion",email);
 
-            location.href = "products.html";
+            location.href = "index.html";
             }else{
-                alert("Falta rellenar Usuario o Contraseña");
+                alert("Falta rellenar Email o Contraseña");
             }    
     });
 });
