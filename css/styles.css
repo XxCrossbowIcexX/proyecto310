@@ -2,9 +2,16 @@
   --color_principal: #f09100;
   --color_secundario: #212529;
 
+  --color_fondo_degrade: linear-gradient(
+    to bottom,
+    var(--color_texto_claro) 0%,
+    var(--color_gris_claro) 100%
+  );
+
   /* Colores de texto */
   --color_texto: #4d4d4d;
   --color_texto_claro: #f8f9fa;
+  --color_fondo_claro: #f8f9fa;
 
   /* Colores base */
   --color_celeste: #5d96cf;
@@ -17,6 +24,7 @@
 
   /* Bordes */
   --border_radio: 16px;
+  --border_radio_sm: 8px;
 }
 
 *,
@@ -24,6 +32,10 @@
 *::before {
   box-sizing: border-box;
   /* font-family: var(--bs-font-sans-serif); */
+}
+
+body {
+  background-image: var(--color_fondo_degrade);
 }
 
 .jumbotron,
