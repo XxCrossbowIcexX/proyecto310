@@ -3,21 +3,50 @@ const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_SELL_COUNT = "Cant.";
 const ORDER_ASC_BY_COST = "Precio menor";
 const ORDER_DESC_BY_COST = "Precio mayor";
-let currentProductsArray = [];
-let currentSortCriteria = undefined;
-let minCount = undefined;
-let maxCount = undefined;
 
 const filtros = document.querySelector(".filtros");
 const seleccionado = filtros.querySelector(".seleccionado");
 const contenedorOpciones = filtros.querySelector(".opciones");
 const listaOpciones = filtros.querySelectorAll(".opciones div");
 
-seleccionado.addEventListener("click", () => {
-    contenedorOpciones.style.display =
-        contenedorOpciones.style.display === "block" ? "none" : "block";
+let currentProductsArray = [];
+let currentSortCriteria = undefined;
+let minCount = undefined;
+let maxCount = undefined;
+
+document.addEventListener("DOMContentLoaded", function (e) {
+    // Obtiene el ID de la categoría seleccionada previamente
+    let catID = localStorage.getItem("catID");
+
+    // Ejecuta la petición para obtener los productos de la categoría seleccionada
+    getJSONData(PRODUCTS_URL + catID + ".json").then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            let datos = resultObj.data;
+            currentProductsArray = datos.products
+
+            // Actualiza el breadcrumb con la categoría actual
+            document.getElementById("breadcrumb").innerHTML = `
+              <a href="index.html">Inicio</a> 
+              <i class="fas fa-arrow-right"></i> 
+              <a href="categories.html">Categorías</a>
+              <i class="fas fa-arrow-right"></i> 
+              <strong>${datos.catName}</strong>`;
+
+            // Mustra los productos ordenados por nombre de forma ascendente por defecto
+            FiltrarYMostrarProductos(ORDER_ASC_BY_NAME);
+        }
+    });
+
+    // Ejecuta la función para asignar los eventos a los botones del filtrado de productos
+    AsignarEventosBotonesFiltrado();
 });
 
+// Maneja el menú desplegable del filtrado de productos
+seleccionado.addEventListener("click", () => {
+    contenedorOpciones.style.display = contenedorOpciones.style.display === "block" ? "none" : "block";
+});
+
+// Maneja la selección de una opción del menú desplegable
 listaOpciones.forEach(opcion => {
     opcion.addEventListener("click", () => {
 
@@ -31,12 +60,14 @@ listaOpciones.forEach(opcion => {
     });
 });
 
+// Cierra el menú desplegable si se hace clic fuera de él
 document.addEventListener("click", (e) => {
     if (!filtros.contains(e.target)) {
         contenedorOpciones.style.display = "none";
     }
 });
 
+// Muestra la lista de productos en el HTML
 function MostrarListaDeProductos() {
 
     let htmlContentToAppend = "";
@@ -64,6 +95,7 @@ function MostrarListaDeProductos() {
     }
 }
 
+// Filtra y ordena los productos según el criterio seleccionado
 function FiltrarProductos(criteria, array) {
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME) {
@@ -104,6 +136,7 @@ function FiltrarProductos(criteria, array) {
     return result;
 }
 
+// Filtra y muestra los productos según el criterio seleccionado
 function FiltrarYMostrarProductos(sortCriteria, productsArray) {
     currentSortCriteria = sortCriteria;
 
@@ -116,21 +149,8 @@ function FiltrarYMostrarProductos(sortCriteria, productsArray) {
     MostrarListaDeProductos();
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(PRODUCTS_URL + "101.json").then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            let datos = resultObj.data;
-            currentProductsArray = datos.products
-            document.getElementById("breadcrumb").innerHTML = `
-              <a href="index.html">Inicio</a> 
-              <i class="fas fa-arrow-right"></i> 
-              <a href="categories.html">Categorías</a>
-              <i class="fas fa-arrow-right"></i> 
-              <strong>${datos.catName}</strong>`;
-            FiltrarYMostrarProductos(ORDER_ASC_BY_NAME);
-        }
-    });
-
+// Asigna los eventos a los botones del filtrado de productos
+function AsignarEventosBotonesFiltrado() {
     document.getElementById("sortAscName").addEventListener("click", function () {
         FiltrarYMostrarProductos(ORDER_ASC_BY_NAME);
     });
@@ -150,4 +170,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("sortCant").addEventListener("click", function () {
         FiltrarYMostrarProductos(ORDER_BY_SELL_COUNT);
     });
-});
+}
