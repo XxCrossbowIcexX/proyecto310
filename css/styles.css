@@ -27,11 +27,14 @@
   --border_radio_sm: 8px;
 }
 
+html {
+  box-sizing: border-box;
+}
+
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
-  /* font-family: var(--bs-font-sans-serif); */
+  box-sizing: inherit;
 }
 
 body {
