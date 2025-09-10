@@ -80,7 +80,7 @@ function MostrarListaDeProductos() {
             ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.soldCount) <= maxCount))) {
 
             htmlContentToAppend += `
-              <div class="tarjeta">
+              <div class="tarjeta" onclick="MostrarProducto(${producto.id})">
                 <img src="${producto.image}" alt="Imagen de ${producto.name}" />
                 <p class="precio">${signoMoneda} ${producto.cost}</p>
                 <h2>${producto.name}</h2>
@@ -90,9 +90,13 @@ function MostrarListaDeProductos() {
               </div>
             `
         }
-
         document.getElementById("listaProductos").innerHTML = htmlContentToAppend;
     }
+}
+
+function MostrarProducto(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
 }
 
 // Filtra y ordena los productos según el criterio seleccionado
