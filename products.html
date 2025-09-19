@@ -47,14 +47,35 @@
       <h1>Productos</h1>
 
       <!-- breadcrumb -->
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex gap-2 mb-2 justify-content-between align-items-center">
         <div id="breadcrumb" class="breadcrumb">
         </div>
+        </div>
 
-        <!-- Filtros -->
+
+<!-- Filtro por rango de precio -->
+<div class="d-flex gap-2 justify-content-between align-items-center">
         <div class="filtro">
-          <p class="m-0 d-none d-md-block">Ordenar por:</p>
-          <div class="filtros">
+          <div id="precios" class="precios">
+            <div class="seleccionado">Precio <i class="fa fa-chevron-down ms-auto"></i></div>
+            <div class="opciones">
+              <div class="mb-1">
+                <input id="rangeFilterCostMin" type="number" class="form-control" placeholder="Min...">
+              </div>
+              <div class="mb-1">
+                <input id="rangeFilterCostMax" type="number" class="form-control" placeholder="Max...">
+              </div>
+              <div class="btn-filtrar">
+              <button id="rangeFilterCost" type="button" class="btn-filtrar-precio">Filtrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!-- Filtros -->
+        <div class="filtro">
+          <p class="m-0 d-none d-md-block text-nowrap">Ordenar por:</p>
+          <div class="filtros" id="filtros">
             <div class="seleccionado">Nombre A-Z <i class="fa fa-chevron-down ms-auto"></i></div>
             <div class="opciones">
               <div id="sortAscName" data-value="nombreAscendente" class="activo">Nombre A-Z</div>

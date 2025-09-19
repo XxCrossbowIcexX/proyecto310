@@ -19,25 +19,31 @@ h1 {
 }
 
 /* Filtros */
-.filtro {
+.filtro, 
+.precio {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
-.filtros {
+.filtros, 
+.precios {
   position: relative;
   width: 200px;
-  font-family: sans-serif;
   cursor: pointer;
+}
+
+.precios {
+  width:150px;
 }
 
 .seleccionado {
   padding: 10px;
   border-radius: var(--border_radio_sm);
-  background-color: var(--color_gris_claro);
+  background-color: var(--color_fondo_claro);
   text-align: center;
+  border: 1px solid var(--color_principal);
 }
 
 .seleccionado i {
@@ -53,10 +59,11 @@ h1 {
   left: 0;
   text-align: center;
   width: 100%;
-  background: var(--color_gris_claro);
+  background: var(--color_fondo_claro);
   border-radius: 0 0 var(--border_radio_sm) var(--border_radio_sm);
   z-index: 10;
   overflow: hidden;
+  border: 1px solid var(--color_principal);
 }
 
 .opciones div {
@@ -67,6 +74,11 @@ h1 {
 .opciones div:hover {
   background: var(--color_principal);
   color: var(--color_texto_claro);
+}
+
+.precios .opciones div:hover {
+  background: var(--color_fondo_claro);
+  color: var(--color_texto);
 }
 
 .opciones .activo {
@@ -177,6 +189,19 @@ h1 {
   font-size: 18px;
   width: fit-content;
 }
+
+/* Estilos del desplegable "Precio" */
+
+.btn-filtrar-precio {
+  background-color: var(--color_principal);
+  border: 1px solid var(--color_principal);
+  color: var(--color_fondo_claro);
+  margin-bottom: 5px;
+  padding: 5px 20px;
+  border-radius: 8px;
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   #infoProducto h2{
     margin: 10px 0;
@@ -194,11 +219,11 @@ h1 {
 }
 @media screen and (max-width: 576px) {
   .breadcrumb,
-  .filtros {
+  .filtros, .precios {
     font-size: 0.9rem;
     gap: 5px;
   }
-  .filtros {
+  .filtros, .precios {
     width: 150px;
   }
   #infoProducto h1 {
@@ -210,15 +235,26 @@ h1 {
   #infoProducto h3 {
     font-size: 18px;
   }
+  .seleccionado i {
+    top: 35%;
+  }
 }
+
 
 
 @media screen and (max-width: 390px) {
   .breadcrumb,
-  .filtros {
+  .filtros, .precios {
     font-size: 0.75rem;
   }
-  .filtros {
+  .filtros, .precios {
     width: 130px;
   }
+}
+
+/* Oculta las flechas en navegadores (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
