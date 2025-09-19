@@ -4,13 +4,22 @@ const ORDER_BY_SELL_COUNT = "Cant.";
 const ORDER_ASC_BY_COST = "Precio menor";
 const ORDER_DESC_BY_COST = "Precio mayor";
 
-const filtros = document.querySelector(".filtros");
+const precios = document.getElementById("precios");
+const botonPrecios = precios.querySelector(".seleccionado");
+const contenedorDeRangoDePrecios = precios.querySelector(".opciones");
+
+
+const filtros = document.getElementById("filtros");
 const seleccionado = filtros.querySelector(".seleccionado");
 const contenedorOpciones = filtros.querySelector(".opciones");
 const listaOpciones = filtros.querySelectorAll(".opciones div");
 
+
+
 let currentProductsArray = [];
 let currentSortCriteria = undefined;
+let minCost = undefined;
+let maxCost = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
@@ -26,11 +35,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             // Actualiza el breadcrumb con la categoría actual
             document.getElementById("breadcrumb").innerHTML = `
-              <a href="index.html">Inicio</a> 
-              <i class="fas fa-arrow-right"></i> 
-              <a href="categories.html">Categorías</a>
-              <i class="fas fa-arrow-right"></i> 
-              <strong>${datos.catName}</strong>`;
+            <a href="index.html">Inicio</a> 
+            <i class="fas fa-arrow-right"></i> 
+            <a href="categories.html">Categorías</a>
+            <i class="fas fa-arrow-right"></i> 
+            <strong>${datos.catName}</strong>`;
 
             // Mustra los productos ordenados por nombre de forma ascendente por defecto
             FiltrarYMostrarProductos(ORDER_ASC_BY_NAME);
@@ -40,6 +49,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
     // Ejecuta la función para asignar los eventos a los botones del filtrado de productos
     AsignarEventosBotonesFiltrado();
 });
+
+// Maneja el menú desplegable del precio
+botonPrecios.addEventListener("click", () =>{
+    contenedorDeRangoDePrecios.style.display = contenedorDeRangoDePrecios.style.display === "block" ? "none" : "block";
+});
+
 
 // Maneja el menú desplegable del filtrado de productos
 seleccionado.addEventListener("click", () => {
@@ -76,7 +91,11 @@ function MostrarListaDeProductos() {
         let currency = producto.currency;
         let signoMoneda = `${currency === "UYU" ? "$" : "U$D"}`;
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(producto.soldCount) >= minCount)) &&
+        // Aquí se agrega el filtro por rango de precio
+        if (((minCost == undefined) || (parseInt(producto.cost) >= minCost)) &&
+            ((maxCost == undefined) || (parseInt(producto.cost) <= maxCost)) &&
+            // Se mantiene el filtro original por cantidad de vendidos
+            ((minCount == undefined) || (minCount != undefined && parseInt(producto.soldCount) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.soldCount) <= maxCount))) {
 
             htmlContentToAppend += `
@@ -90,8 +109,8 @@ function MostrarListaDeProductos() {
               </div>
             `
         }
-        document.getElementById("listaProductos").innerHTML = htmlContentToAppend;
     }
+    document.getElementById("listaProductos").innerHTML = htmlContentToAppend;
 }
 
 function MostrarProducto(id) {
@@ -173,5 +192,17 @@ function AsignarEventosBotonesFiltrado() {
 
     document.getElementById("sortCant").addEventListener("click", function () {
         FiltrarYMostrarProductos(ORDER_BY_SELL_COUNT);
+    });
+    
+    // Asigna el evento al botón de filtro de precio
+    document.getElementById("rangeFilterCost").addEventListener("click", function(){
+        minCost = document.getElementById("rangeFilterCostMin").value;
+        maxCost = document.getElementById("rangeFilterCostMax").value;
+        
+        minCost = (minCost != "") ? parseInt(minCost) : undefined;
+        maxCost = (maxCost != "") ? parseInt(maxCost) : undefined;
+
+        // Vuelve a mostrar la lista de productos con el nuevo filtro aplicado.
+        MostrarListaDeProductos();
     });
 }
