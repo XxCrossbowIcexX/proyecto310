@@ -16,6 +16,8 @@ const listaOpciones = filtros.querySelectorAll(".opciones div");
 
 const buscador = document.getElementById("buscador");
 
+const limpiarFiltros = document.getElementById("limpiarFiltros");
+
 let currentProductsArray = [];
 let productosAMostrar = currentProductsArray;
 let currentSortCriteria = undefined;
@@ -53,6 +55,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 
+    // Limpia los filtros y muestra todos los productos
+    limpiarFiltros.addEventListener("click", () => {
+        // Resetea los valores de los filtros
+        minCost = undefined;
+        maxCost = undefined;
+        minCount = undefined;
+        maxCount = undefined;
+        buscador.value = "";
+        document.getElementById("rangeFilterCostMin").value = "";
+        document.getElementById("rangeFilterCostMax").value = "";
+        // Muestra todos los productos sin filtros
+        listaOpciones[0].click(); 
+    });
+        
+
     // Ejecuta la función para asignar los eventos a los botones del filtrado de productos
     AsignarEventosBotonesFiltrado();
 });
@@ -87,6 +104,9 @@ document.addEventListener("click", (e) => {
     if (!filtros.contains(e.target)) {
         contenedorOpciones.style.display = "none";
     }
+    if (!precios.contains(e.target)) {
+        contenedorDeRangoDePrecios.style.display = "none";
+    }
 });
 
 // Muestra la lista de productos en el HTML
@@ -101,10 +121,6 @@ function MostrarListaDeProductos(criterio = "") {
             || producto.description.toLowerCase().includes(criterio.toLowerCase())
         );
     }
-
-    // for (let i = 0; i < currentProductsArray.length; i++) {
-    //      let producto = currentProductsArray[i];
-    // no entendi porque cambiar esto
 
     for (let producto of productosAMostrar) {
         let currency = producto.currency;
@@ -228,6 +244,6 @@ function AsignarEventosBotonesFiltrado() {
         maxCost = (maxCost != "") ? parseInt(maxCost) : undefined;
 
         // Vuelve a mostrar la lista de productos con el nuevo filtro aplicado.
-        MostrarListaDeProductos();
+        MostrarListaDeProductos(buscador.value);
     });
 }
