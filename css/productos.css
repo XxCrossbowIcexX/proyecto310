@@ -19,7 +19,7 @@ h1 {
 }
 
 /* Filtros */
-.filtro, 
+.filtro,
 .precio {
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@ h1 {
   gap: 10px;
 }
 
-.filtros, 
+.filtros,
 .precios {
   position: relative;
   width: 200px;
@@ -35,7 +35,7 @@ h1 {
 }
 
 .precios {
-  width:150px;
+  width: 150px;
 }
 
 .seleccionado {
@@ -106,6 +106,7 @@ h1 {
   overflow: hidden;
   text-align: left;
   padding: 12px;
+  cursor: pointer;
 }
 
 .tarjeta img {
@@ -190,7 +191,6 @@ h1 {
   max-width: 1200px;
   padding: 0 20px 20px 20px;
   text-align: left !important;
-
 }
 #infoProducto img {
   width: 100%;
@@ -205,7 +205,7 @@ h1 {
 #infoProducto h3 {
   margin-bottom: 0px;
 }
-#infoProducto p{
+#infoProducto p {
   font-size: 16px;
   margin: 0;
 }
@@ -234,7 +234,7 @@ h1 {
   width: 100%;
 }
 
-div:has(.filtro){
+div:has(.filtro) {
   width: auto !important;
 }
 
@@ -248,11 +248,11 @@ div:has(.filtro){
 }
 
 @media screen and (max-width: 768px) {
-  #infoProducto h2{
+  #infoProducto h2 {
     margin: 10px 0;
     font-size: 32px;
   }
-  #infoProducto h1{
+  #infoProducto h1 {
     margin-top: 10px !important;
     font-size: 50px;
   }
@@ -269,23 +269,25 @@ div:has(.filtro){
   #limpiarFiltros {
     font-size: 15px;
   }
-  div:has(.filtro){
-  width: 100% !important;
-}
+  div:has(.filtro) {
+    width: 100% !important;
+  }
 }
 @media screen and (max-width: 576px) {
   .breadcrumb,
-  .filtros, .precios {
+  .filtros,
+  .precios {
     font-size: 0.9rem;
     gap: 5px;
   }
-  .filtros, .precios {
+  .filtros,
+  .precios {
     width: 150px;
   }
   #infoProducto h1 {
     font-size: 40px;
   }
-  #infoProducto h2{
+  #infoProducto h2 {
     font-size: 22px;
   }
   #infoProducto h3 {
@@ -294,23 +296,23 @@ div:has(.filtro){
   .seleccionado i {
     top: 35%;
   }
- .buscador,
+  .buscador,
   #limpiarFiltros {
     font-size: 14px;
   }
 }
 
-
-
 @media screen and (max-width: 390px) {
   .breadcrumb,
-  .filtros, .precios {
+  .filtros,
+  .precios {
     font-size: 0.75rem;
   }
-  .filtros, .precios {
+  .filtros,
+  .precios {
     width: 130px;
   }
-   .buscador {
+  .buscador {
     font-size: 12px;
   }
   #limpiarFiltros {
@@ -319,8 +321,8 @@ div:has(.filtro){
 }
 
 /* Oculta las flechas en navegadores (Chrome, Safari, Edge) */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
