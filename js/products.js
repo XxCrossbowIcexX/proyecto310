@@ -14,9 +14,10 @@ const seleccionado = filtros.querySelector(".seleccionado");
 const contenedorOpciones = filtros.querySelector(".opciones");
 const listaOpciones = filtros.querySelectorAll(".opciones div");
 
-
+const buscador = document.getElementById("buscador");
 
 let currentProductsArray = [];
+let productosAMostrar = currentProductsArray;
 let currentSortCriteria = undefined;
 let minCost = undefined;
 let maxCost = undefined;
@@ -43,6 +44,12 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             // Mustra los productos ordenados por nombre de forma ascendente por defecto
             FiltrarYMostrarProductos(ORDER_ASC_BY_NAME);
+
+            // Busca productos por nombre mientras se escribe
+            buscador.addEventListener("input", (e) => {
+                MostrarListaDeProductos(e.target.value);
+        });
+
         }
     });
 
@@ -83,11 +90,23 @@ document.addEventListener("click", (e) => {
 });
 
 // Muestra la lista de productos en el HTML
-function MostrarListaDeProductos() {
+function MostrarListaDeProductos(criterio = "") {
 
     let htmlContentToAppend = "";
-    for (let i = 0; i < currentProductsArray.length; i++) {
-        let producto = currentProductsArray[i];
+    productosAMostrar = currentProductsArray;
+
+    if (criterio.trim() !== "") {
+        productosAMostrar = currentProductsArray.filter(producto =>
+            producto.name.toLowerCase().includes(criterio.toLowerCase())
+            || producto.description.toLowerCase().includes(criterio.toLowerCase())
+        );
+    }
+
+    // for (let i = 0; i < currentProductsArray.length; i++) {
+    //      let producto = currentProductsArray[i];
+    // no entendi porque cambiar esto
+
+    for (let producto of productosAMostrar) {
         let currency = producto.currency;
         let signoMoneda = `${currency === "UYU" ? "$" : "U$D"}`;
 
@@ -109,8 +128,14 @@ function MostrarListaDeProductos() {
               </div>
             `
         }
+         
     }
-    document.getElementById("listaProductos").innerHTML = htmlContentToAppend;
+         
+    if (htmlContentToAppend === "") {
+        htmlContentToAppend = `<p>No se encontraron productos.</p>`;
+    }
+
+    document.getElementById("listaProductos").innerHTML = htmlContentToAppend; 
 }
 
 function MostrarProducto(id) {
@@ -169,7 +194,7 @@ function FiltrarYMostrarProductos(sortCriteria, productsArray) {
 
     currentProductsArray = FiltrarProductos(currentSortCriteria, currentProductsArray);
 
-    MostrarListaDeProductos();
+    MostrarListaDeProductos(buscador.value);
 }
 
 // Asigna los eventos a los botones del filtrado de productos
