@@ -154,6 +154,38 @@ h1 {
   font-size: 12px;
 }
 
+.buscador {
+  background-color: var(--color_fondo_claro);
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color_principal);
+  border-radius: var(--border_radio_sm);
+  width: 100%;
+}
+
+.buscador input {
+  background-color: var(--color_fondo_claro);
+  border: none;
+  padding: 10px;
+  outline: none;
+  border-radius: var(--border_radio_sm) 0 0 var(--border_radio_sm);
+  width: 100%;
+}
+
+.buscador button {
+  border: none;
+  border-radius: 0 var(--border_radio_sm) var(--border_radio_sm) 0;
+  background-color: var(--color_fondo_claro);
+  border-left: 1px solid var(--color_principal);
+  width: 37px;
+  height: auto;
+  padding: 10px 0;
+}
+
+.buscador button i {
+  color: #4d4d4d80;
+}
+
 #infoProducto {
   max-width: 1200px;
   padding: 0 20px 20px 20px;
@@ -202,6 +234,19 @@ h1 {
   width: 100%;
 }
 
+div:has(.filtro){
+  width: auto !important;
+}
+
+#limpiarFiltros {
+  color: var(--color_principal);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   #infoProducto h2{
     margin: 10px 0;
@@ -215,7 +260,18 @@ h1 {
     margin-bottom: 5px;
     font-size: 24px;
   }
-  
+  .contenedorFiltros {
+    flex-direction: column;
+  }
+  .buscador {
+    font-size: 16px;
+  }
+  #limpiarFiltros {
+    font-size: 15px;
+  }
+  div:has(.filtro){
+  width: 100% !important;
+}
 }
 @media screen and (max-width: 576px) {
   .breadcrumb,
@@ -238,6 +294,10 @@ h1 {
   .seleccionado i {
     top: 35%;
   }
+ .buscador,
+  #limpiarFiltros {
+    font-size: 14px;
+  }
 }
 
 
@@ -249,6 +309,12 @@ h1 {
   }
   .filtros, .precios {
     width: 130px;
+  }
+   .buscador {
+    font-size: 12px;
+  }
+  #limpiarFiltros {
+    font-size: 13px;
   }
 }
 
