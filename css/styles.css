@@ -1,5 +1,6 @@
 :root {
   --color_principal: #f09100;
+  --color_principal_hover: #e28a06;
   --color_secundario: #212529;
 
   --color_fondo_degrade: linear-gradient(
@@ -12,6 +13,7 @@
   --color_texto: #4d4d4d;
   --color_texto_claro: #f8f9fa;
   --color_fondo_claro: #f8f9fa;
+  --color_fondo_claro2: #e6e7e866;
 
   /* Colores base */
   --color_celeste: #5d96cf;

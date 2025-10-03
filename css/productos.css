@@ -148,6 +148,10 @@ h1 {
   border-radius: var(--border_radio_sm);
 }
 
+.btnAgregarAlCarrito:hover {
+  background-color: var(--color_principal_hover);
+}
+
 .vendidos {
   padding-top: 10px;
   color: var(--color_texto);
