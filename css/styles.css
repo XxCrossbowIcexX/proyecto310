@@ -25,6 +25,9 @@
   /* Bordes */
   --border_radio: 16px;
   --border_radio_sm: 8px;
+
+  /* Box Shadow */
+  --tarjeta_sombra: 4px 4px 8px rgba(0, 0, 0, 0.25);
 }
 
 html {
