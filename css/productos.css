@@ -120,6 +120,7 @@ h1 {
   font-weight: bold;
   font-size: 22px;
   margin: 5px 0;
+  display: block;
 }
 
 .tarjeta h2 {
