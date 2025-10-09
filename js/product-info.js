@@ -3,11 +3,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let prodID = localStorage.getItem("prodID");
     let producto = []
     let indexEstrellasSeleccionadas = 0; 
+    let productosRelacionados = [];
 
     // Ejecuta la petición para obtener los productos de la categoría seleccionada
     getJSONData(PRODUCT_INFO_URL + prodID + ".json").then(function (resultObj) {
         if (resultObj.status === "ok") {
             producto = resultObj.data;
+            productosRelacionados = producto.relatedProducts;
 
             // Actualizamos el breadcrumb
             document.getElementById("breadcrumb").innerHTML = `
@@ -22,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             // Muestra la información del producto
             CargarInfoProducto(producto);
             ObtenerCalificaciones(prodID);
+            ObtenerProductosRelacionados(productosRelacionados);
         }
     });
 
