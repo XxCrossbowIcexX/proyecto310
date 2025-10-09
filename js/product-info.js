@@ -244,6 +244,40 @@ function CambiarImagenPrincipal(nuevaImagen, elemento) {
         img.classList.remove("activa");
     });
 
-    // Agregar la clase 'activa' a la miniatura clickeada
-    elemento.classList.add("activa");
+  // Agregar la clase 'activa' a la miniatura clickeada
+  elemento.classList.add("activa");
+}
+
+function ObtenerProductosRelacionados(productos){
+  let htmlContentToAppend = "";
+  productos.forEach((producto, index)=>{
+    getJSONData(PRODUCT_INFO_URL + producto.id + ".json").then(function (resultObj) {
+    if (resultObj.status === "ok") {
+      producto = resultObj.data;      
+      let currency = producto.currency;
+      let signoMoneda = `${currency === "UYU" ? "$" : "U$D"}`;
+      // Añade los productos relacionados
+      
+        htmlContentToAppend += `
+        
+          <div class="tarjeta me-3" onclick="MostrarProducto(${producto.id})">
+            <img src="${producto.images[0]}" alt="Imagen de ${producto.name}" />
+            <p class="precio">${signoMoneda} ${producto.cost}</p>
+            <h2>${producto.name}</h2>
+            <p class="descripcion" title="${producto.description}">${producto.description}</p>
+            <button class="btnAgregarAlCarrito">Agregar al carrito</button>
+            <div class="vendidos">Vendidos: ${producto.soldCount}</div>
+          </div>
+        `;
+      
+      
+    }
+    
+    document.getElementById("productosRelacionados").innerHTML = htmlContentToAppend;
+  });
+  });
+  window.MostrarProducto = function(id) {
+      localStorage.setItem("prodID", id);
+      location.reload();
+    }
 }
