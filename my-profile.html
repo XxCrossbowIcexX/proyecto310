@@ -5,9 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/my-profile.css">
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -47,19 +50,68 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <p id="usuario"></p>
+            <li class="nav-item dropdown text-center">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">Perfil</a>
+            <ul class="dropdown-menu p-0">
+              <li><a class="dropdown-item p-3" style="border-bottom: 1px solid var(--color_principal)" href="my-profile.html">Mi perfil</a></li>           
+              <li><a class="dropdown-item p-3" href="#" id="logout">Cerrar sesión</a></li>
+            </ul>
           </li>
-        </ul>
       </div>
     </div>
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <form id="perfilForm" class="needs-validation" novalidate>
+        <div class="profile-header">
+          <h1>Mi Perfíl</h1> 
+          <div class="FotoPerfil">
+            <img id="perfilFoto" src="img/user.png">
+          </div>
+          <div class="CambiarFoto">
+            <button type="submit" class="btnCambiarFoto" id="perfil">Cambiar foto</button>
+        </div>
+
+<!-- <input type="url" class="form-control" id="imagen" placeholder="https://ejemplo.com/imagen.jpg"> -->
+            
+            <div class="Datos pb-5 container">
+            <div class="Datos-contenedor">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Se requiere el nombre.
+              </div>
+
+              <div class="Apellido">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Se requiere el apellido.
+                </div>
+              </div>
+
+              <div class="Email">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">
+                  Email inválido.
+              </div>
+
+               <div class="Telefono">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Se requiere el teléfono.
+              </div>
+
+              <div class="ActualizarPerfil">
+              <button class="btnActualizarPerfil" id="btnActualizarPerfil" type="submit">Actualizar perfíl</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -73,6 +125,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
