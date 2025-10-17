@@ -53,37 +53,36 @@ body {
 }
 
 .Datos {
-    margin-top: 30px;
-    display: flex;
-    width: 60%;
-    flex-direction: column;
-    color: var(--color_texto);
-    background: var(--color_fondo);
-    border: 1px solid var(--color_gris_claro);
-    border-radius: var(--border_radio_sm);
-    box-shadow:var(--tarjeta_sombra);
-    overflow: hidden;
-    text-align: left;
-    
+  margin-top: 30px;
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  color: var(--color_texto);
+  background: var(--color_fondo);
+  border: 1px solid var(--color_gris_claro);
+  border-radius: var(--border_radio_sm);
+  box-shadow:var(--tarjeta_sombra);
+  overflow: hidden;
+  text-align: left;
 }
 
 .Datos label {
-    font-weight: bold;
-    color: var(--color_texto_2);
-    margin-top: 19px;
+  font-weight: bold;
+  color: var(--color_texto_2);
+  margin-top: 19px;
 }
 
 .form-control {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: auto; 
-		background: var(--color_fondo);
-    border: 1px solid var(--color_gris_claro);
-    border-radius: var(--border_radio_sm);
-    box-shadow:var(--tarjeta_sombra);
-    padding: 10px 15px;
-    font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto; 
+  background: var(--color_fondo);
+  border: 1px solid var(--color_gris_claro);
+  border-radius: var(--border_radio_sm);
+  box-shadow:var(--tarjeta_sombra);
+  padding: 10px 15px;
+  font-size: 20px;
 }
 
 .Datos-contenedor input {
@@ -98,72 +97,58 @@ body {
 }
 
 .form-control:focus {
-    color: var(--color_texto);
-    background-color: var(--color_fondo_4);
-    border: 1px solid var(--color_principal);
-    outline: 0;
-    box-shadow: none;
+  color: var(--color_texto);
+  background-color: var(--color_fondo_4);
+  border: 1px solid var(--color_principal);
+  outline: 0;
+  box-shadow: none;
 }
 
 .ActualizarPerfil{
-    margin-top: 18px;
+  margin-top: 18px;
 }
 
 .btnActualizarPerfil {
-    color: var(--color_terciario);
-    background-color: var(--color_principal);
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: var(--border_radio_sm);
-    width: 100%;
-    margin: auto;
-    padding: 10px 10px;
-    margin-top: 18px;
+  color: var(--color_terciario);
+  background-color: var(--color_principal);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: var(--border_radio_sm);
+  width: 100%;
+  margin: auto;
+  padding: 10px 10px;
+  margin-top: 18px;
 }
 
 @media screen and (max-width: 768px) {
-    .Datos {
-        width: 100%;
-        flex-direction: column;
+  .Datos {
+      width: 100%;
+      flex-direction: column;
+  }
 
-    }
-
-    .Datos-contenedor {
-        width: 100%;
-        margin: auto; 
-        display: flex;
-    }
-
-@media screen and (max-width: 576px) {
-    .Datos {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .Datos-contenedor {
-        width: 100%;
-        margin: auto; 
-        display: flex;
-    }
-
-    .Datos label {
-        font-size: 16px;
-    }
-
-    .FotoPerfil {
-        width: 150px;
-        height: 150px;
-    }
-
-    .CambiarFoto {
-        font-size: 12px;
-    }
-
-    .btnActualizarPerfil {
-        font-size: 14px;
-    }
+  .Datos-contenedor {
+      width: 100%;
+      margin: auto; 
+  }
 }
 
+@media screen and (max-width: 576px) {
+  .Datos label {
+      font-size: 16px;
+  }
+
+  .FotoPerfil {
+      width: 150px;
+      height: 150px;
+  }
+
+  .CambiarFoto {
+      font-size: 12px;
+  }
+
+  .btnActualizarPerfil {
+      font-size: 14px;
+  }
 }
