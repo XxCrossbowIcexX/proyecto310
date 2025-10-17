@@ -2,27 +2,6 @@ body {
     min-height: 100vh;
 }
 
-.nav-item {
-    color: var(--color_texto_claro);
-}
-
-.navbar-dark .navbar-nav .dropdown-menu {
-    text-align: center;
-    background-color: #212529;
-    border-color: var(--color_principal);
-}
-
-.dropdown-menu a{
-    color: var(--color_fondo_claro2);
-    border: none;
-}
-
-.navbar-nav .dropdown-item:hover{
-    background-color: var(--color_principal);
-    color: var(--color_texto_claro);
-}
-
-
 .profile-header {
   padding: 38px;
   text-align: center;
@@ -65,7 +44,7 @@ body {
 
 .btnCambiarFoto {
     background-color: var(--color_principal);
-    color: var(--color_texto_claro);
+    color: var(--color_terciario);
     border: none;
     padding: 10px 18px;
     border-radius: var(--border_radio_sm);
@@ -79,8 +58,8 @@ body {
     width: 60%;
     flex-direction: column;
     color: var(--color_texto);
-    background: var(--color_fondo_claro);
-    border: 0.5px solid var(--color_gris_claro);
+    background: var(--color_fondo);
+    border: 1px solid var(--color_gris_claro);
     border-radius: var(--border_radio_sm);
     box-shadow:var(--tarjeta_sombra);
     overflow: hidden;
@@ -90,24 +69,40 @@ body {
 
 .Datos label {
     font-weight: bold;
-    color: #4D4D4D;
+    color: var(--color_texto_2);
     margin-top: 19px;
 }
 
-.Datos-contenedor {
+.form-control {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: auto; 
-}
-
-.form-control {
-    background: var(--color_fondo_claro);
-    border: 0.5px solid var(--color_gris_claro);
+		background: var(--color_fondo);
+    border: 1px solid var(--color_gris_claro);
     border-radius: var(--border_radio_sm);
     box-shadow:var(--tarjeta_sombra);
     padding: 10px 15px;
     font-size: 20px;
+}
+
+.Datos-contenedor input {
+  background-color: var(--color_fondo_4);
+  color: var(--color_texto);
+  border: 1px solid var(--color_gris_claro);
+  border-radius: var(--border_radio_sm);
+  padding: 10px;
+  outline: none;
+  width: 100%;
+	box-shadow: none;
+}
+
+.form-control:focus {
+    color: var(--color_texto);
+    background-color: var(--color_fondo_4);
+    border: 1px solid var(--color_principal);
+    outline: 0;
+    box-shadow: none;
 }
 
 .ActualizarPerfil{
@@ -115,7 +110,7 @@ body {
 }
 
 .btnActualizarPerfil {
-    color: var(--color_texto_claro);
+    color: var(--color_terciario);
     background-color: var(--color_principal);
     border: none;
     cursor: pointer;

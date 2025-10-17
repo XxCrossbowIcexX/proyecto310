@@ -63,25 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-// Función para validar email
-function ValidarEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-// Cerrar sesión
-document.addEventListener("click", (e) => {
-  if (e.target.id === "logout") {
-    localStorage.removeItem("usuario");
-
-    setTimeout(() => {
-      window.location.href = "/login.html";
-
-    },50);
-
-    return true;
+  // Función para validar email
+  function ValidarEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
-});
+
   // Cambiar foto de perfil
   btnCambiarFoto.addEventListener("click", (e) => {
     CambiarFotoPerfil();
