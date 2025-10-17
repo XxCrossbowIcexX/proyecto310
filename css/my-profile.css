@@ -47,6 +47,12 @@ body {
   transition: all 0.3s ease;
 }
 
+.FotoPerfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .FotoPerfil:hover {
   transform: scale(1.05);
 }
