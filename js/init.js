@@ -70,7 +70,7 @@ document.addEventListener("click", (e) => {
     sessionStorage.setItem("usuario", JSON.stringify(usuarioLogeado));
 
     setTimeout(() => {
-      window.location.href = "/login.html";
+      window.location.href = "login.html";
     },50);
     return true;
   }
