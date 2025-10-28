@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             // Muestra la información del producto
             CargarInfoProducto(producto);
+            // Botón "Comprar"
+            document.getElementById("botonComprarDirecto").addEventListener("click", function() {
+                AgregarProductoAlCarrito(producto, true); // Guarda y redirige 
+            });
             ObtenerCalificaciones(prodID);
             ObtenerProductosRelacionados(productosRelacionados);
         }
@@ -64,8 +68,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
             <p>Categoría: <span>${p.category}</span></p>
             <p>Vendidos: <span>${p.soldCount}</span></p>
             <h2 id="precio">${signoMoneda} ${p.cost}</h2>
-            <button class="btnAgregarAlCarrito">Agregar al carrito</button>
-            </div>
+            <button id="botonComprarDirecto">Comprar</button> 
+            <button class="btnAgregarAlCarrito">Agregar al carrito</button>
+            </div>
             `;
 
         document.getElementById("infoProducto").innerHTML = htmlContentToAppend;

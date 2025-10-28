@@ -70,7 +70,7 @@ document.addEventListener("click", (e) => {
     sessionStorage.setItem("usuario", JSON.stringify(usuarioLogeado));
 
     setTimeout(() => {
-      window.location.href = "/login.html";
+      window.location.href = "login.html";
     },50);
     return true;
   }
@@ -107,4 +107,45 @@ let getJSONData = function (url) {
       hideSpinner();
       return result;
     });
+}
+
+// Función para guardar un producto en el carrito
+function AgregarProductoAlCarrito(informacionProducto, navegar = false) {
+    // Crear el objeto con la estructura que queremos guardar
+    let productoParaElCarrito = {
+        id: informacionProducto.id, 
+        nombre: informacionProducto.name, 
+        cantidad: 1, 
+        precio: informacionProducto.cost,
+        moneda: informacionProducto.currency,
+        imagen: informacionProducto.images ? informacionProducto.images[0] : informacionProducto.image 
+    };
+
+    // Carga el carrito del localStorage. Si no existe, inicia un array vacío.
+    let carritoDeComprasActual = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    let productoExiste = false;
+    
+    // Recorremos el carrito para ver si el producto YA está
+    for (let i = 0; i < carritoDeComprasActual.length; i++) {
+        let productoDelCarrito = carritoDeComprasActual[i];
+        if (String(productoDelCarrito.id) === String(productoParaElCarrito.id)) {
+            productoDelCarrito.cantidad += 1; 
+            productoExiste = true;
+            break;
+        }
+    }
+
+    // Si el producto NO existe, lo agregamos como un elemento nuevo
+    if (!productoExiste) {
+        carritoDeComprasActual.push(productoParaElCarrito);
+    }
+
+    // Guarda la versión final del carrito en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carritoDeComprasActual));
+
+    // Redirigir a la página del carrito
+    if (navegar) {
+        window.location.href = "cart.html";
+    }
 }
