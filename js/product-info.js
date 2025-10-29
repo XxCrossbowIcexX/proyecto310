@@ -23,10 +23,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             // Muestra la información del producto
             CargarInfoProducto(producto);
-            // Botón "Comprar"
-            document.getElementById("botonComprarDirecto").addEventListener("click", function() {
-                AgregarProductoAlCarrito(producto, true); // Guarda y redirige 
-            });
             ObtenerCalificaciones(prodID);
             ObtenerProductosRelacionados(productosRelacionados);
         }
@@ -68,9 +64,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
             <p>Categoría: <span>${p.category}</span></p>
             <p>Vendidos: <span>${p.soldCount}</span></p>
             <h2 id="precio">${signoMoneda} ${p.cost}</h2>
-            <button id="botonComprarDirecto">Comprar</button> 
-            <button class="btnAgregarAlCarrito">Agregar al carrito</button>
-            </div>
+                <div class="botonesCart col-12 d-flex gap-2">
+                    <button class="btnComprarAhora" onclick="comprarAhora(${p.id})">Comprar</button>
+                    <button class="btnAgregarAlCarrito" onclick="agregarAlCarrito(${p.id})">Agregar al carrito</button>
+                </div>
+            </div>
             `;
 
         document.getElementById("infoProducto").innerHTML = htmlContentToAppend;
@@ -273,7 +271,7 @@ function ObtenerProductosRelacionados(productos){
             <p class="precio">${signoMoneda} ${producto.cost}</p>
             <h2>${producto.name}</h2>
             <p class="descripcion" title="${producto.description}">${producto.description}</p>
-            <button class="btnAgregarAlCarrito">Agregar al carrito</button>
+           <button class="btnAgregarAlCarritoInfo" onclick="event.stopPropagation(); agregarAlCarrito(${producto.id})">Agregar al carrito</button>
             <div class="vendidos">Vendidos: ${producto.soldCount}</div>
           </div>
         `;
@@ -288,4 +286,42 @@ function ObtenerProductosRelacionados(productos){
       localStorage.setItem("prodID", id);
       location.reload();
     }
+}
+
+function agregarAlCarrito(productId) {
+    getJSONData(PRODUCT_INFO_URL + productId + ".json").then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            let producto = resultObj.data;
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            cart.push(producto);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            Swal.fire({
+                title: "¡Producto agregado al carrito!",
+                icon: "success",
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: true,
+                confirmButtonColor: "var(--color_principal)",
+                confirmButtonText: "Aceptar",
+          });
+        }
+    });
+}
+
+
+function comprarAhora(productId) {
+    getJSONData(PRODUCT_INFO_URL + productId + ".json").then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            let producto = resultObj.data;
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Agregar el producto al carrito
+            cart.push(producto);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Redirigir a la página del carrito
+            window.location.href = "cart.html";
+        }
+    });
 }
