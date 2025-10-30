@@ -41,7 +41,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* --- Cada producto --- */
 #carrito-items {
-  background: var(color_fondo);
+  background: var(--color_fondo);
   border: 0.5px solid var(--color_gris_claro);
   border-radius: var(--border_radio_sm);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
@@ -49,9 +49,10 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .carrito-tarjeta {
-  display: flex;
-  background: var(color_fondo);
-  padding: 25px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  padding: 20px;
   border-bottom: 0.5px solid var(--color_gris_claro);
 }
 
@@ -62,8 +63,11 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .carrito-tarjeta-contenido {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
-  margin-left: 15px;
 }
 
 .carrito-tarjeta-contenido h3 {
@@ -71,11 +75,51 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
+.precio {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.precio p {
+    text-align: right;
+    margin: 0;
+    cursor: default;
+    font-weight: bold;
+    color: var(--color_principal);
+    font-size: 22px;
+}
+
+@media screen and (max-width: 550px) {
+  .carrito-tarjeta {
+  grid-template-columns: auto 1fr;
+}
+.carrito-tarjeta-contenido {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.precio {
+  grid-row: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  flex-direction: row;
+}
+
+.precio p {
+    order: -1;
+}
+}
+
 /* --- Cantidad y precio --- */
 .disminuir-aumentar {
   display: flex;
   align-items: center;
-  margin-top: 50px;
 }
 
 .disminuir-aumentar button {
@@ -121,22 +165,12 @@ input[type="number"]::-webkit-inner-spin-button {
   color: var(--color_texto);
   cursor: pointer;
   align-items: right;
-  margin-left: 10rem;
   height: 25px;
   width: 25px;
 }
 
 .eliminar-producto:hover {
   color: var(--color_principal_hover);
-}
-
-.precio p {
-    text-align: right;
-    margin-top: 50px;
-    cursor: default;
-    font-weight: bold;
-    color: var(--color_principal);
-    font-size: 22px;
 }
 
 /* --- Vaciar carrito --- */
