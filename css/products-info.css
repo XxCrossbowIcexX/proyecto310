@@ -52,13 +52,13 @@
 /* Botónes de agregar al carrito del Producto */
 .btnAgregarAlCarrito {
   margin-top: 20px;
-  background-color: var(--color_fondo_2);
+  background-color: var(--color_fondo_3);
   color: var(--color_principal);
   width: 199px;
 }
 
 .btnAgregarAlCarrito:hover {
-  background-color: var(--color_fondo_2_hover);
+  background-color: var(--color_fondo_2);
 }
 
 .btnComprarAhora {
