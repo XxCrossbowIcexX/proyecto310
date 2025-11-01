@@ -273,15 +273,16 @@ function ObtenerProductosRelacionados(productos) {
         // Añade los productos relacionados
 
         htmlContentToAppend += `
-        
-          <div class="tarjeta me-3" onclick="MostrarProducto(${producto.id})">
-            <img src="${producto.images[0]}" alt="Imagen de ${producto.name}" />
-            <p class="precio">${signoMoneda} ${producto.cost}</p>
-            <h2>${producto.name}</h2>
-            <p class="descripcion" title="${producto.description}">${producto.description}</p>
-           <button class="btnAgregarAlCarritoInfo" onclick="event.stopPropagation(); agregarAlCarrito(${producto.id})">Agregar al carrito</button>
-            <div class="vendidos">Vendidos: ${producto.soldCount}</div>
-          </div>
+      
+          <div class="tarjeta" onclick="MostrarProducto(${producto.id})">
+                <img src="${producto.images[0]}" alt="Imagen de ${producto.name}" />
+                <p class="precio">${signoMoneda} ${producto.cost}</p>
+                <h2>${producto.name}</h2>
+                <p class="descripcion" title="${producto.description}">
+                ${producto.description}</p>
+                <button type="button" class="btnAgregarAlCarrito" data-producto='${JSON.stringify(producto)}'>Agregar al carrito</button>
+                <div class="vendidos">Vendidos: ${producto.soldCount}</div>
+            </div>
         `;
       }
 
