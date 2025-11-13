@@ -97,8 +97,158 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   document.querySelector(".col-lg-8").appendChild(vaciarCarrito);
 
-  /// Funciones para cambiar y actualizar el subtotal en tiempo real.
+  // Modal concluir compra
+  const btnComprar = document.getElementById("btnComprar");
+  const modal = document.getElementById("concluirCompraModal");
+  const btnCerrarModal = document.getElementById("btnCerrar");
 
+  const btnAnterior = document.getElementById("btnAnterior");
+  const btnSiguiente = document.getElementById("btnSiguiente");
+  const tabs = ["datos", "pago", "confirmacion"];
+  let indiceTab = 0;
+
+  const select = document.querySelector(".selectorTipoEnvio");
+  const display = select.querySelector(".seleccionado");
+  const opciones = select.querySelector(".opciones");
+  const opcionesItems = opciones.querySelectorAll("div");
+  const selectReal = document.getElementById("selectEnvio");
+
+  // Abrir modal
+  btnComprar.addEventListener("click", function () {
+    modal.style.display = "flex";
+    MostrarTab(0);
+  });
+
+  // Cerrar modal
+  btnCerrarModal.addEventListener("click", function () {
+    modal.style.display = "none";
+  });
+
+  // Lógica de tabs
+  document.querySelectorAll(".botonTabs").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Desactivar botones
+      document
+        .querySelectorAll(".botonTabs")
+        .forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Mostrar contenido correspondiente
+      const tab = btn.getAttribute("data-tab");
+      document
+        .querySelectorAll(".tab-pane")
+        .forEach((p) => p.classList.remove("active"));
+      document.getElementById(tab).classList.add("active");
+      MostrarTab(tabs.indexOf(tab));
+    });
+  });
+
+  function MostrarTab(index) {
+    // Evitar que se salga de rango
+    if (index < 0 || index >= tabs.length) return;
+
+    indiceTab = index;
+
+    // Actualizar botón activo
+    document
+      .querySelectorAll(".botonTabs")
+      .forEach((b) => b.classList.remove("active"));
+    document
+      .querySelector(`[data-tab="${tabs[indiceTab]}"]`)
+      .classList.add("active");
+
+    // Mostrar contenido correspondiente
+    document
+      .querySelectorAll(".tab-pane")
+      .forEach((p) => p.classList.remove("active"));
+    document.getElementById(tabs[indiceTab]).classList.add("active");
+
+    // Cambiar texto de los botones del footer del modal
+    ModificarBotonesFooterModal(tabs[indiceTab]);
+  }
+
+  function ModificarBotonesFooterModal(tab) {
+    btnSiguiente.classList.remove("final");
+    switch (tab) {
+      case "datos":
+        btnAnterior.innerHTML = `Volver al carrito`;
+        btnSiguiente.innerHTML = `Siguiente <i class="fa-solid fa-arrow-right"></i>`;
+        break;
+      case "pago":
+        btnAnterior.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Atrás`;
+        btnSiguiente.innerHTML = `Siguiente <i class="fa-solid fa-arrow-right"></i>`;
+        break;
+      case "confirmacion":
+        btnAnterior.innerHTML = `<i class="fa-solid fa-arrow-left"></i> Atrás`;
+        btnSiguiente.innerHTML = `Finalizar`;
+        btnSiguiente.classList.add("final");
+        break;
+    }
+  }
+
+  btnSiguiente.addEventListener("click", () => {
+    if (indiceTab < tabs.length - 1) {
+      MostrarTab(indiceTab + 1);
+    } else {
+      // Acá va cuando finalizan la compra, no se olviden de eliminar este comentario
+      // cuando hagan la funcionalidad de finalizar la compra a quien le toque
+    }
+  });
+
+  btnAnterior.addEventListener("click", () => {
+    if (indiceTab > 0) {
+      MostrarTab(indiceTab - 1);
+    } else {
+      modal.style.display = "none";
+    }
+  });
+
+  const vencimientoInput = document.getElementById("vencimiento");
+
+  vencimientoInput.addEventListener("input", (e) => {
+    let valor = e.target.value.replace(/\D/g, "");
+
+    if (valor.length >= 3) {
+      valor = valor.replace(/(\d{2})(\d{1,2})/, "$1/$2");
+    }
+
+    e.target.value = valor.slice(0, 5);
+  });
+
+  vencimientoInput.addEventListener("blur", () => {
+    const val = vencimientoInput.value;
+    const [mes, año] = val.split("/");
+
+    if (mes < 1 || mes > 12 || !año || año.length < 2) {
+      vencimientoInput.classList.add("is-invalid");
+    } else {
+      vencimientoInput.classList.remove("is-invalid");
+    }
+  });
+
+  /// Selector tipo de envio
+  document.addEventListener("click", function (e) {
+    if (display.contains(e.target)) {
+      opciones.style.display =
+        opciones.style.display === "block" ? "none" : "block";
+    } else {
+      opciones.style.display = "none";
+    }
+    opcionesItems.forEach((op) => {
+      if (op.contains(e.target)) {
+        display.innerHTML =
+          op.innerText + ' <i class="fa fa-chevron-down ms-auto"></i>';
+        opciones.style.display = "none";
+
+        opcionesItems.forEach((o) => o.classList.remove("activo"));
+        op.classList.add("activo");
+
+        selectReal.value = op.dataset.value;
+      }
+    });
+  });
+
+  /// Funciones para cambiar y actualizar el subtotal en tiempo real.
   const FACTOR_CONVERSION_PESOS_URUGUAYOS_A_DOLARES = 0.025;
   const INTERVALO_OBSERVACION_CARRITO_MILISEGUNDOS = 100;
   const SIMBOLO_MONEDA_PRINCIPAL = "U$D";
