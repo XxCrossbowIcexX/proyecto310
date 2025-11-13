@@ -112,6 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const opciones = select.querySelector(".opciones");
   const opcionesItems = opciones.querySelectorAll("div");
   const selectReal = document.getElementById("selectEnvio");
+  const inputCostoEnvio = document.getElementById("inputCostoEnvio");
+  const inputSubTotal = document.getElementById("inputSubTotal");
+  const inputTotal = document.getElementById("inputTotal");
 
   // Abrir modal
   btnComprar.addEventListener("click", function () {
@@ -244,9 +247,30 @@ document.addEventListener("DOMContentLoaded", function () {
         op.classList.add("activo");
 
         selectReal.value = op.dataset.value;
+        CalcularCosto(CalcularSubtotalDelCarrito());
       }
     });
   });
+
+  function CalcularCosto(subtotal) {
+    let costoEnvio = 0;
+    const tipoEnvio = selectReal.value;
+    switch (tipoEnvio) {
+      case "0":
+        costoEnvio = subtotal * 0.05;
+      break
+      case "1":
+        costoEnvio = subtotal * 0.07;
+      break
+      case "2":
+        costoEnvio = subtotal * 0.15;
+      break
+    }
+    inputCostoEnvio.value = `U$D ${costoEnvio.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    const totalConEnvio = subtotal + costoEnvio;
+    inputSubTotal.value = `U$D ${subtotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+    inputTotal.value = `U$D ${totalConEnvio.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`; 
+  }
 
   /// Funciones para cambiar y actualizar el subtotal en tiempo real.
   const FACTOR_CONVERSION_PESOS_URUGUAYOS_A_DOLARES = 0.025;
@@ -306,6 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const NUEVO_SUBTOTAL = CalcularSubtotalDelCarrito();
       ActualizarTotalEnHTML(NUEVO_SUBTOTAL);
+      CalcularCosto(NUEVO_SUBTOTAL);
 
       ESTADO_ANTERIOR_DEL_CARRITO = ESTADO_ACTUAL_DEL_CARRITO;
     }
@@ -315,6 +340,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (carrito.length > 0) {
     const SUBTOTAL_INICIAL = CalcularSubtotalDelCarrito();
     ActualizarTotalEnHTML(SUBTOTAL_INICIAL);
+    CalcularCosto(SUBTOTAL_INICIAL);
   }
 
   // Inicia el proceso de observación periódica del carrito.
