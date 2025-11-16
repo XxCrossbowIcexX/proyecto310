@@ -2,218 +2,239 @@
 <html lang="es">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/cart.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/cart.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="menuDeNavegacion"></div>
-  <main>
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <div id="breadcrumb" class="breadcrumb my-4 gap-2">
-          <a href="index.html">Inicio</a> 
-          <i class="fas fa-arrow-right"></i> 
-          <strong>Carrito de Compras</strong>
-        </div>
-      </div>
+    <div id="menuDeNavegacion"></div>
+    <main>
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div id="breadcrumb" class="breadcrumb my-4 gap-2">
+                    <a href="index.html">Inicio</a>
+                    <i class="fas fa-arrow-right"></i>
+                    <strong>Carrito de Compras</strong>
+                </div>
+            </div>
 
-      <!-- Carrito vacío -->
-      <div id="carrito-vacio" class="text-center py-5">
-        <i class="fas fa-shopping-cart fa-6x style="color: #f09100;"></i>
-        <h3>Tu carrito está vacío</h3>
-        <p>No hay productos agregados al carrito.</p>
-        <a href="categories.html" class="btn" style="background-color: #f09100;">Seguir comprando</a>
-      </div>
+    <!-- Carrito vacío -->
+            <div id="carrito-vacio" class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-6x style="color: #f09100;"></i>
+                <h3>Tu carrito está vacío</h3>
+                <p>No hay productos agregados al carrito.</p>
+                <a href="categories.html" class="btn" style="background-color: #f09100;">Seguir comprando</a>
+            </div>
 
-      <!-- Carrito -->
-      <div id="carrito-productos" class="rounded-2">
-        <div class="row m-0">
-          <div class="col-lg-8 mb-4" >
-            <div id="carrito-items">
-          </div>
-        </div>
+    <!-- Carrito -->            
+            <div id="carrito-productos" class="rounded-2">
+                <div class="row m-0">
+                    <div class="col-lg-8 mb-4" >
+                        <div id="carrito-items">
+                        </div>
+                    </div>
 
-          <!-- Compra -->
-          <div class="col-lg-4">
-            <aside class="compra-container">
-                <p><strong>Cantidad productos</strong></p>
-                <p class="suma-precios"><strong>Total</strong> <span id="total-precio">$ 0</span></p>
-                <hr>
-                <button id="btnComprar" class="btnComprar">Concluir compra</button>
-            </aside>
-          </div>
+        <!-- Compra -->                    
+                    <div class="col-lg-4">
+                        <aside class="compra-container">
+                            <p><strong>Cantidad productos</strong></p>
+                            <p class="suma-precios"><strong>Total</strong> <span id="total-precio">$ 0</span></p>
+                            <hr>
+                            <button id="btnComprar" class="btnComprar">Concluir compra</button>
+                        </aside>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </main>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-end">
+                <a href="#">Volver arriba</a>
+            </p>
+            <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+            </p>
+        </div>
+    </footer>
+    <div id="spinner-wrapper">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
 
-  <!-- Modal concluir compra -->
-  <div id="concluirCompraModal" class="modalConcluirCompra">
-    <form class="p-4">
+<!-- Modal concluir compra -->    
+    <div id="concluirCompraModal" class="modalConcluirCompra">
+        <form class="p-4">
 
-      <ul class="modalTabs">
-        <li><button type="button" class="botonTabs active" data-tab="datos">Datos</button></li>
-        <li><button type="button" class="botonTabs" data-tab="pago">Pago</button></li>
-        <li><button type="button" class="botonTabs" data-tab="confirmacion">Confirmación</button></li>
-      </ul>
+            <ul class="modalTabs">
+                <li><button type="button" class="botonTabs active" data-tab="datos">Datos</button></li>
+                <li><button type="button" class="botonTabs" data-tab="pago">Pago</button></li>
+                <li><button type="button" class="botonTabs" data-tab="confirmacion">Confirmación</button></li>
+            </ul>
 
-      <div class="modalConcluir">
-        <div class="d-flex">
-          <button type="button" class="btn-close ms-auto" id="btnCerrar"></button>
-        </div>
-
-        <div class="modalContenido">
-
-          <!-- Datos -->
-          <div class="tab-pane fade show active" id="datos">
-            <div class="row g-2">
-              <div class="col-md-6">
-                <label class="form-label">Departamento</label>
-                <input class="form-control" type="text" name="departamento" placeholder="Ej: Montevideo">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">Localidad</label>
-                <input class="form-control" type="text" name="localidad" placeholder="Ej: La Teja">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">Calle</label>
-                <input class="form-control" type="text" name="calle" placeholder="Ej: José Batlle y Ordóñez">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">Esquina</label>
-                <input class="form-control" type="text" name="esquina" placeholder="Ej: Av. Agraciada">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">Número</label>
-                <input class="form-control" type="text" name="numero" placeholder="Ej: 1453">
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label">Tipo de envío</label>
-
-                <div class="selectorTipoEnvio">
-                  <div class="seleccionado">Standar 12 a 15 días (5%) <i class="fa fa-chevron-down ms-auto"></i></div>
-                  <div class="opciones">
-                    <div data-value="0" class="activo">Standar 12 a 15 días (5%)</div>
-                    <div data-value="1">Express 5 a 8 días (7%)</div>
-                    <div data-value="2">Premium 2 a 5 días (15%)</div>
-                  </div>
+            <div class="modalConcluir">
+                <div class="d-flex">
+                    <button type="button" class="btn-close ms-auto" id="btnCerrar"></button>
                 </div>
 
-                <select id="selectEnvio" name="tipoEnvio" class="d-none">
-                  <option value="0" selected>Standar 12 a 15 días (5%)</option>
-                  <option value="1">Express 5 a 8 días (7%)</option>
-                  <option value="2">Premium 2 a 5 días (15%)</option>
-                </select>
-              </div>
+                <div class="modalContenido">
+
+        <!-- Datos -->                  
+                    <div class="tab-pane fade show active" id="datos">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Departamento</label>
+                                <input class="form-control" type="text" id="departamento" name="departamento"
+                                    placeholder="Ej: Montevideo">
+                                <small id="errorDepartamento" class="error-text"></small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Localidad</label>
+                                <input class="form-control" type="text" id="localidad" name="localidad"
+                                    placeholder="Ej: La Teja">
+                                <small id="errorLocalidad" class="error-text"></small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Calle</label>
+                                <input class="form-control" type="text" id="calle" name="calle"
+                                    placeholder="Ej: José Batlle y Ordóñez">
+                                <small id="errorCalle" class="error-text"></small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Esquina</label>
+                                <input class="form-control" type="text" id="esquina" name="esquina"
+                                    placeholder="Ej: Av. Agraciada">
+                                <small id="errorEsquina" class="error-text"></small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Número</label>
+                                <input class="form-control" type="text" id="numero" name="numero" placeholder="Ej: 1453">
+                                <small id="errorNumero" class="error-text"></small>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Tipo de envío</label>
+
+                                <div class="selectorTipoEnvio">
+                                    <div class="seleccionado">Standar 12 a 15 días (5%) <i class="fa fa-chevron-down ms-auto"></i></div>
+                                    <div class="opciones">
+                                        <div data-value="0" class="activo">Standar 12 a 15 días (5%)</div>
+                                        <div data-value="1">Express 5 a 8 días (7%)</div>
+                                        <div data-value="2">Premium 2 a 5 días (15%)</div>
+                                    </div>
+                                </div>
+
+                                <select id="selectEnvio" name="tipoEnvio" class="d-none">
+                                    <option value="" selected disabled>Seleccione un tipo de envío</option>
+                                    <option value="0">Standar 12 a 15 días (5%)</option>
+                                    <option value="1">Express 5 a 8 días (7%)</option>
+                                    <option value="2">Premium 2 a 5 días (15%)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+        <!-- Pago -->                    
+                    <div class="tab-pane fade show" id="pago">
+                        <div class="row g-2 mb-2">
+
+                            <label for="tarjeta" class="radioModal">
+                                <input id="tarjeta" type="radio" name="metodo" value="tarjeta" checked/>
+                                <span></span> Tarjeta de crédito/débito
+                            </label>
+                            <small id="errorMetodoPago" class="error-text"></small>
+
+                            <div class="col-12 col-md-12">
+                                <label class="form-label">Titular</label>
+                                <input class="form-control" type="text" id="titularTarjeta" name="titularTarjeta"
+                                    placeholder="Nombre en la tarjeta">
+                                <small id="errorTitular" class="error-text"></small>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Número de tarjeta</label>
+                                <input class="form-control" type="text" id="numeroTarjeta" name="numeroTarjeta"
+                                    placeholder="XXXX XXXX XXXX XXXX">
+                                <small id="errorNumeroTarjeta" class="error-text"></small>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <label class="form-label">Vencimiento</label>
+                                <input class="form-control" type="text" id="vencimiento" name="vencimientoTarjeta"
+                                    placeholder="MM/AA" maxlength="5">
+                                <small id="errorVencimiento" class="error-text"></small>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <label class="form-label">CVC</label>
+                                <input class="form-control" type="text" id="cvcTarjeta" name="cvcTarjeta"
+                                    placeholder="Ej: 123" maxlength="3">
+                                <small id="errorCVC" class="error-text"></small>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <label for="tranferencia" class="radioModal">
+                                <input id="tranferencia" type="radio" name="metodo" value="transferencia" />
+                                <span></span> Transferencia bancaria
+                            </label>
+
+                            <div class="col-12 col-md-12">
+                                <label class="form-label">Número de cuenta</label>
+                                <input class="form-control" type="text" id="numeroCuenta" name="numeroCuenta"
+                                    placeholder="Ej: 00012345678901">
+                                <small id="errorCuenta" class="error-text"></small>
+                            </div>
+                        </div>
+                    </div>
+
+        <!-- Confirmación -->                    
+                    <div class="tab-pane fade show" id="confirmacion">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Subtotal</label>
+                                <input id="inputSubTotal" class="form-control" type="text" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Costos de envío</label>
+                                <input id="inputCostoEnvio" class="form-control" type="text" disabled>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Total</label>
+                                <input id="inputTotal" class="form-control" type="text" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <button type="button" class="btnAnterior" id="btnAnterior">Volver al carrito</button>
+                    <button type="button" class="btnSiguiente" id="btnSiguiente">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
             </div>
-          </div>
-
-          <!-- Pago -->
-          <div class="tab-pane fade show" id="pago">
-            <div class="row g-2 mb-2">
-
-              <label for="tarjeta" class="radioModal">
-                <input id="tarjeta" type="radio" name="metodo" value="tarjeta" checked/>
-                <span></span> Tarjeta de crédito/débito
-              </label>
-
-              <div class="col-12 col-md-12">
-                <label class="form-label">Titular</label>
-                <input class="form-control" type="text" name="titularTarjeta" placeholder="Nombre en la tarjeta">
-              </div>
-
-              <div class="col-12 col-md-6">
-                <label class="form-label">Número de tarjeta</label>
-                <input class="form-control" type="text" name="numeroTarjeta" placeholder="XXXX XXXX XXXX XXXX">
-              </div>
-
-              <div class="col-6 col-md-3">
-                <label class="form-label">Vencimiento</label>
-                <input class="form-control" type="text" id="vencimiento" name="vencimientoTarjeta" placeholder="MM/AA" maxlength="5">
-              </div>
-
-              <div class="col-6 col-md-3">
-                <label class="form-label">CVC</label>
-                <input class="form-control" type="text" name="cvcTarjeta" placeholder="Ej: 123" maxlength="3">
-              </div>
-            </div>
-
-            <div class="row g-2">
-              <label for="tranferencia" class="radioModal">
-                <input id="tranferencia" type="radio" name="metodo" value="transferencia"/>
-                <span></span> Transferencia bancaria
-              </label>
-
-              <div class="col-12 col-md-12">
-                <label class="form-label">Número de cuenta</label>
-                <input class="form-control" type="text" name="numeroCuenta" placeholder="Ej: 00012345678901">
-              </div>
-            </div>
-          </div>
-
-          <!-- Confirmación -->
-          <div class="tab-pane fade show" id="confirmacion">
-            <div class="row g-2">
-              <div class="col-md-6">
-                <label class="form-label">Subtotal</label>
-                <input id="inputSubTotal" class="form-control" type="text" disabled>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Costos de envío</label>
-                <input id="inputCostoEnvio" class="form-control" type="text" disabled>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Total</label>
-                <input id="inputTotal" class="form-control" type="text" disabled>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between mt-3">
-          <button type="button" class="btnAnterior" id="btnAnterior">Volver al carrito</button>
-          <button type="button" class="btnSiguiente" id="btnSiguiente">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-
-      </div>
-    </form>
-  </div>
+        </form>
+    </div>
 
 
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 </html>
