@@ -92,6 +92,7 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 22px;
 }
 
+
 @media screen and (max-width: 550px) {
   .carrito-tarjeta {
   grid-template-columns: auto 1fr;
@@ -200,7 +201,7 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: bold;
 }
 
-.comprar-btn {
+.btnComprar {
   width: 100%;
   background: #ff8c00;
   color: var(--color_texto_3);
@@ -213,7 +214,201 @@ input[type="number"]::-webkit-inner-spin-button {
   transition: background 0.2s;
 }
 
-.comprar-btn:hover {
+.btnComprar:hover {
   background: #e57c00;
 }
 
+
+/* Modal concluir compra */
+.modalConcluirCompra {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modalConcluir {
+  background: var(--color_fondo_2);
+  border: 1px solid var(--color_gris_claro);
+  width: 100%;
+  max-width: 800px;
+  border-radius: var(--border_radio_sm);
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modalConcluir .btn-close{
+  color: var(--color_texto);
+}
+
+.modalTabs {
+  display: flex;
+  align-items: end;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+  margin: 0 20px;
+  transform: translateY(0px);
+}
+
+.modalTabs .botonTabs {
+  background: var(--color_fondo_2);
+  border: 1px solid var(--color_fondo_3);
+  border-radius: var(--border_radio_sm) var(--border_radio_sm) 0 0;
+  border-bottom: 0;
+  color: var(--color_texto);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.botonTabs.active {
+  background: var(--color_fondo_2);
+  color: var(--color_celeste_2);
+  font-weight: bold;
+  border-color: var(--color_gris_claro);
+  transform: translateY(1px);
+  padding: 15px 20px;
+}
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+.btnSiguiente, 
+.btnAnterior {
+  background-color: var(--color_celeste_2);
+  border: none;
+  margin-top: auto;
+  padding: 8px 16px;
+  color: var(--color_terciario);
+  font-weight: 600;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  border-radius: var(--border_radio_sm);
+}
+
+.btnSiguiente:hover,
+.btnAnterior:hover {
+  background-color: var(--color_celeste_3);
+}
+
+.btnSiguiente.final {
+  background-color: var(--color_principal);
+}
+.btnSiguiente.final:hover {
+  background-color: var(--color_principal_hover);
+}
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1);
+}
+
+.modalContenido label{
+  font-weight: bold;
+  color: var(--color_texto_2);
+}
+
+.modalContenido input[type="radio"]{
+  display: none;
+}
+
+.radioModal {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.radioModal span {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color_texto);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.radioModal input[type="radio"]:checked + span::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: var(--color_principal);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.selectorTipoEnvio {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  color: var(--color_secundario);
+}
+
+.selectorTipoEnvio .seleccionado {
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  background-color: white;
+  border: 1px solid var(--color_principal);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selectorTipoEnvio .seleccionado i {
+  margin-left: auto;
+}
+
+.selectorTipoEnvio .opciones {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--color_terciario);
+  border: 1px solid var(--color_principal);
+  border-radius: 0 0 var(--border_radio_sm) var(--border_radio_sm);
+  z-index: 10;
+  overflow: hidden; 
+}
+
+.selectorTipoEnvio .opciones div {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.selectorTipoEnvio .opciones div.activo{
+  background-color: var(--color_celeste);
+  color: var(--color_terciario);
+  border-bottom-color: transparent;
+}
+
+.selectorTipoEnvio .opciones div:hover {
+  background: var(--color_principal);
+  color: var(--color_terciario);
+  border-bottom-color: transparent;
+}
+
+/* Estilo para los mensajes de error */
+.error-text {
+    color: red;
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85em;
+}
+
+/* Estilo para el campo inválido */
+.form-control.is-invalid {
+    border: 2px solid red !important;
+}
+
+/* Para que SweetAlert esté siempre por encima del modal */
+.swal2-container {
+    z-index: 10000 !important;
+}
