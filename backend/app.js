@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const port = 3000;
 
+// Genera una instancia de express "Inicializa la aplicación"
 const app = express();
 
 // Utilidades
