@@ -2,7 +2,7 @@ import { LeerJsonPorCarpeta } from "../utilidad/LeerJSONPorCarpeta.js";
 
 export const ObtenerComentariosPorId = (req, res) => {
   // Obtenemos el JSON si existe
-  const data = LeerJsonPorCarpeta("comentarios", req.params.id);
+  const data = LeerJsonPorCarpeta("productos/comentarios", req.params.id);
 
   // Si no existe retornamos error 404 (Not found)
   if (!data) {
