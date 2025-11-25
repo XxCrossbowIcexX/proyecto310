@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let catID = localStorage.getItem("catID");
 
   // Ejecuta la petición para obtener los productos de la categoría seleccionada
-  getJSONData(PRODUCTS_URL + catID + ".json").then(function (resultObj) {
+  getJSONData(PRODUCTS_URL + catID).then(function (resultObj) {
     if (resultObj.status === "ok") {
       let datos = resultObj.data;
       currentProductsArray = datos.products;

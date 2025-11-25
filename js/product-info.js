@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
   let productosRelacionados = [];
 
   // Ejecuta la petición para obtener los productos de la categoría seleccionada
-  getJSONData(PRODUCT_INFO_URL + prodID + ".json").then(function (resultObj) {
+  getJSONData(PRODUCT_INFO_URL + prodID).then(function (resultObj) {
     if (resultObj.status === "ok") {
       producto = resultObj.data;
       productosRelacionados = producto.relatedProducts;
@@ -185,9 +185,7 @@ function generarEstrellasHTML(score) {
 function ObtenerCalificaciones(prodID) {
   let comentarios = [];
   let html = "";
-  getJSONData(PRODUCT_INFO_COMMENTS_URL + prodID + ".json").then(function (
-    resultObj
-  ) {
+  getJSONData(PRODUCT_INFO_COMMENTS_URL + prodID).then(function (resultObj) {
     if (resultObj.status === "ok") {
       comentarios = resultObj.data;
 
@@ -263,9 +261,7 @@ function CambiarImagenPrincipal(nuevaImagen, elemento) {
 function ObtenerProductosRelacionados(productos) {
   let htmlContentToAppend = "";
   productos.forEach((producto, index) => {
-    getJSONData(PRODUCT_INFO_URL + producto.id + ".json").then(function (
-      resultObj
-    ) {
+    getJSONData(PRODUCT_INFO_URL + producto.id).then(function (resultObj) {
       if (resultObj.status === "ok") {
         producto = resultObj.data;
         let currency = producto.currency;
@@ -275,12 +271,16 @@ function ObtenerProductosRelacionados(productos) {
         htmlContentToAppend += `
       
           <div class="tarjeta" onclick="MostrarProducto(${producto.id})">
-                <img src="${producto.images[0]}" alt="Imagen de ${producto.name}" />
+                <img src="${producto.images[0]}" alt="Imagen de ${
+          producto.name
+        }" />
                 <p class="precio">${signoMoneda} ${producto.cost}</p>
                 <h2>${producto.name}</h2>
                 <p class="descripcion" title="${producto.description}">
                 ${producto.description}</p>
-                <button type="button" class="btnAgregarAlCarrito" data-producto='${JSON.stringify(producto)}'>Agregar al carrito</button>
+                <button type="button" class="btnAgregarAlCarrito" data-producto='${JSON.stringify(
+                  producto
+                )}'>Agregar al carrito</button>
                 <div class="vendidos">Vendidos: ${producto.soldCount}</div>
             </div>
         `;
@@ -297,9 +297,7 @@ function ObtenerProductosRelacionados(productos) {
 }
 
 function agregarAlCarrito(productId) {
-  getJSONData(PRODUCT_INFO_URL + productId + ".json").then(function (
-    resultObj
-  ) {
+  getJSONData(PRODUCT_INFO_URL + productId).then(function (resultObj) {
     if (resultObj.status === "ok") {
       let producto = resultObj.data;
       AgregarProductoAlCarrito(producto);
@@ -308,9 +306,7 @@ function agregarAlCarrito(productId) {
 }
 
 function comprarAhora(productId) {
-  getJSONData(PRODUCT_INFO_URL + productId + ".json").then(function (
-    resultObj
-  ) {
+  getJSONData(PRODUCT_INFO_URL + productId).then(function (resultObj) {
     if (resultObj.status === "ok") {
       let producto = resultObj.data;
       AgregarProductoAlCarrito(producto, true);
