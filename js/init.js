@@ -2,7 +2,7 @@ const CATEGORIES_URL = "http://localhost:3000/categorias";
 const PRODUCTS_URL = "http://localhost:3000/categorias/";
 const PRODUCT_INFO_URL = "http://localhost:3000/productos/";
 const PRODUCT_INFO_COMMENTS_URL = "http://localhost:3000/comentarios/";
-const PUBLISH_PRODUCT_URL = "http://localhost:3000/ventas/publish.json";
+const PUBLISH_PRODUCT_URL = "http://localhost:3000/ventas/publicar";
 
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
