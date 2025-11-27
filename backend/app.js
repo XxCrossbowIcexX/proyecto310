@@ -15,8 +15,13 @@ const port = 3000;
 app.use(cors());
 app.use(express.json()); 
 app.use("/login", loginRoutes); 
+app.use("/categorias", catsRoutes);
+app.use("/productos", productsRoutes);
+app.use("/comentarios", commentsRoutes);
 app.use("/ventas", ventasRoutes); 
+
 app.get("/", (req, res) => {
     res.send("¡Backend de eMercado JAP 2025 funcionando correctamente!");
 });
+
 app.listen(port, () => console.log(`Servidor iniciado correctamente en http://localhost:${port}`));
