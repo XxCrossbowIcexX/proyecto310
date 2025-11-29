@@ -32,6 +32,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Guardo el email en sessionStorage y, si se indicó mantener sesión, en localStorage
             let usuario = { email: email, conectado: true};
+            let token = fetch(
+                "http://localhost:3000/login",{
+                    method: "POST",
+                    headers:{"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        usuario: email,
+                        contraseña: pass
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    localStorage.setItem("token", JSON.stringify(data.token));
+                });
+
             sessionStorage.setItem("usuario", JSON.stringify(usuario));
             if (mantenerSesion) {
                 localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -46,3 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+let getJSONData = function (url) {
+  let result = {};
+  return fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    })
+    .then(function (response) {
+      result.status = "ok";
+      result.data = response;
+      return result;
+    })
+    .catch(function (error) {
+      result.status = "error";
+      result.data = error;
+      return result;
+    });
+};
