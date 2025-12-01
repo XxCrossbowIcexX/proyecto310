@@ -115,7 +115,11 @@ let hideSpinner = function () {
 let getJSONData = function (url) {
   let result = {};
   showSpinner();
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      "Authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+    },
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -127,12 +131,22 @@ let getJSONData = function (url) {
       result.status = "ok";
       result.data = response;
       hideSpinner();
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: "Datos cargados correctamente",
+      });
       return result;
     })
     .catch(function (error) {
       result.status = "error";
       result.data = error;
       hideSpinner();
+      Swal.fire({
+        icon: "error",
+        title: "Token no Válido",
+        text: "Por favor inicie sesión nuevamente.",
+      });
       return result;
     });
 };
