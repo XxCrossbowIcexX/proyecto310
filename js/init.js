@@ -117,7 +117,7 @@ let getJSONData = function (url) {
   showSpinner();
   return fetch(url, {
     headers: {
-      "Authorization": `Bearer ${JSON.parse(localStorage.getItem("token"))}`
+      Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
     },
   })
     .then((response) => {
@@ -131,11 +131,6 @@ let getJSONData = function (url) {
       result.status = "ok";
       result.data = response;
       hideSpinner();
-      Swal.fire({
-        icon: "success",
-        title: "Éxito",
-        text: "Datos cargados correctamente",
-      });
       return result;
     })
     .catch(function (error) {
@@ -144,8 +139,13 @@ let getJSONData = function (url) {
       hideSpinner();
       Swal.fire({
         icon: "error",
-        title: "Token no Válido",
+        title: "Token no válido o expirado",
         text: "Por favor inicie sesión nuevamente.",
+        confirmButtonText: "Ir al Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "login.html";
+        }
       });
       return result;
     });
